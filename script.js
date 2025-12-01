@@ -119,13 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         Category: ${formatCategory(deed.category)}
                     </span>
                 </div>
-                <div style="margin-top: 2rem; padding: 1.5rem; background-color: #F9FAFB; border-radius: 8px; border-left: 4px solid var(--secondary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 0.5rem; font-family: var(--font-heading);">Reflection</h4>
-                    <p style="margin-bottom: 0; font-size: 0.95rem;">
-                        This deed is simple to perform but carries significant weight. 
-                        Make intention to practice it today and share it with others.
-                    </p>
-                </div>
             </div>
         `;
         toggleModal(true);
