@@ -147,18 +147,24 @@ def find_deed_content(full_text, deeds):
         
         # Clean up the content
         lines = content.split('\n')
-        # Remove lines that are just the ID and Title
-        # Heuristic: Remove first line if it contains the search ID or original ID.
+        
+        # Remove lines that are just the ID and Title (existing logic)
         search_id = ID_OVERRIDES.get(deed_id, deed_id)
         if lines:
             first_line = lines[0]
-            # Check if first line matches the ID pattern roughly
             if str(search_id) in first_line or str(deed_id) in first_line or (deed_id == 21 and "Tenderness" in first_line):
-                # For 21, we might want to KEEP the line if it's content
                 if deed_id != 21:
                     lines.pop(0)
         
-        content = '\n'.join(lines).strip()
+        # Filter out page numbers (lines that are just digits)
+        cleaned_lines = []
+        for line in lines:
+            # Check if line is just a number (page number)
+            if re.match(r'^\s*\d+\s*$', line):
+                continue
+            cleaned_lines.append(line)
+            
+        content = '\n'.join(cleaned_lines).strip()
         content = re.sub(r'\s+', ' ', content)
         
         deed_obj = next(d for d in deeds if d['id'] == deed_id)
