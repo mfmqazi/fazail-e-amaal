@@ -426,69 +426,33 @@ const deeds = [
         description: "Truthfulness, fulfilling trusts, chastity, lowering gaze, restraining hands, and fulfilling promises."
     },
     {
-        id: 72,
+        id: 78,
         title: "Starting from Right",
         category: "daily",
         description: "Using the right hand and starting from the right side in good things is the Sunnah."
     },
     {
-        id: 73,
+        id: 79,
         title: "Cleaning Dropped Morsel",
         category: "daily",
         description: "Picking up, cleaning, and eating fallen food shows humility and appreciation for sustenance."
     },
     {
-        id: 74,
+        id: 80,
         title: "Sneezing Etiquette",
         category: "daily",
         description: "Praising Allah when sneezing and responding to the one who sneezes is a mutual right."
     },
     {
-        id: 75,
+        id: 81,
         title: "Fear of Allah (Taqwa)",
         category: "spiritual",
         description: "Consciousness of Allah in private and public is the root of all goodness."
     },
     {
-        id: 76,
+        id: 82,
         title: "Optimism & Hope",
         category: "spiritual",
         description: "Having good expectations of Allah and hope in His mercy is an act of worship."
-    },
-    {
-        id: 77,
-        title: "Modesty (Haya)",
-        category: "character",
-        description: "Modesty is a branch of faith and brings nothing but good."
-    },
-    {
-        id: 78,
-        title: "Consultation (Istikhara)",
-        category: "spiritual",
-        description: "Seeking Allah's guidance in matters prevents regret."
-    },
-    {
-        id: 79,
-        title: "Consulting Others (Shura)",
-        category: "social",
-        description: "Seeking advice from wise people is a safety from mistakes."
-    },
-    {
-        id: 80,
-        title: "Visiting Graveyards",
-        category: "spiritual",
-        description: "Visiting graves reminds one of death and softens the heart."
-    },
-    {
-        id: 81,
-        title: "Making Wudu before Sleep",
-        category: "daily",
-        description: "Sleeping in a state of purity invites the prayers of angels."
-    },
-    {
-        id: 82,
-        title: "Forgiving Debt",
-        category: "charity",
-        description: "Forgiving a debt for a person in difficulty is a deed of high status."
     }
 ];
