@@ -3,7 +3,7 @@ const deeds = [
         id: 1,
         title: "Good Intention",
         category: "spiritual",
-        description: "The foundation of all deeds. Purifying one's intention solely for the sake of Allah turns even mundane daily habits into acts of worship."
+        description: "The validity and reward of any good deed are intrinsically linked to the purity of one's intention. A good deed will only be rewarded if it is performed with the right intention. For instance, performing prayer solely for the pleasure of Allah will earn reward, but if done to impress others, it leads to sin. Even permissible daily activities like earning a livelihood, choosing a profession, or dressing well can be transformed into acts of worship when coupled with a good intention."
     },
     {
         id: 2,
@@ -57,13 +57,13 @@ const deeds = [
         id: 10,
         title: "Initiating Salam",
         category: "social",
-        description: "Being the first to greet others with 'As-salamu alaykum' spreads peace and love among believers."
+        description: "To precede in greeting is a Sunnah. Being the first to offer salam spreads peace and love. However, it is advisable to wait if the person is occupied with worship or study. If a group is seated, they should be greeted. Failing to reply to a salam is considered sinful. When a letter containing 'salam alaikum' is received, it should be responded to verbally."
     },
     {
         id: 11,
         title: "Visiting the Sick",
         category: "social",
-        description: "Visiting those who are ill is a right of a Muslim and brings the visitor under the shade of Allah's mercy."
+        description: "Visiting the sick is an act of great merit and a right of a Muslim. The Prophet ﷺ said, 'When a Muslim visits his sick brother in faith, he is all the time in the garden of Paradise.' Another Hadith states that seventy thousand angels pray for the visitor's forgiveness. The proper etiquette includes placing one's hand on the sick person's forehead to offer comfort."
     },
     {
         id: 12,
