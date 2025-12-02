@@ -21,6 +21,18 @@ def is_garbage(text):
     if sum(1 for c in text if c in "&@#$%^*/\\") > 1:
         return True
 
+    # Check for "garbage" that looks like spaced out letters/numbers e.g. ' N 6 L 4 ',G, '.,'
+    # If text is mostly single uppercase letters, numbers, and punctuation
+    if len(text) > 5:
+        # Count valid words (3+ chars)
+        words = [w for w in text.split() if len(w) >= 3 and w.isalpha()]
+        if not words:
+            # If no valid words, and contains suspicious chars or mostly uppercase/numbers
+            if re.search(r'[A-Z0-9]', text) and re.search(r'[\.,;\'\"]', text):
+                 # Check if it looks like the specific garbage pattern
+                 if re.search(r'\s[A-Z0-9]\s', text) or re.search(r',[A-Z],', text):
+                     return True
+
     non_alnum = re.sub(r'[a-zA-Z0-9\s\.,;:\'\"-]', '', text)
     if len(text) > 0 and len(non_alnum) / len(text) > 0.4:
         return True
