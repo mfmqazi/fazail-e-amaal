@@ -13,9 +13,14 @@ def is_garbage(text):
         return False
     
     # Check for specific garbage patterns or high non-alnum ratio
-    if re.search(r'[&@#$%\^&*/\\]{3,}', text) or re.search(r'[~`]{3,}', text):
+    # Added ~ and ` to the list, and check for them anywhere
+    if re.search(r'[&@#$%\^&*/\\]{3,}', text) or re.search(r'[~`]', text):
         return True
         
+    # Check for high density of punctuation/symbols
+    if sum(1 for c in text if c in "&@#$%^*/\\") > 1:
+        return True
+
     non_alnum = re.sub(r'[a-zA-Z0-9\s\.,;:\'\"-]', '', text)
     if len(text) > 0 and len(non_alnum) / len(text) > 0.4:
         return True
@@ -45,18 +50,33 @@ def extract_text_from_pdf(pdf_path):
         for b in blocks:
             if "lines" in b:
                 for line in b["lines"]:
-                    for span in line["spans"]:
+                    spans = line["spans"]
+                    i = 0
+                    while i < len(spans):
+                        span = spans[i]
                         text = span["text"]
+                        
                         if is_garbage(text):
-                            # Extract image
-                            # Replace with placeholder instead of extracting image
-                            # page_text += " [Arabic Text Image] "
-                            bbox = fitz.Rect(span["bbox"])
-                            # Add padding
-                            bbox.x0 -= 2
-                            bbox.y0 -= 2
-                            bbox.x1 += 2
-                            bbox.y1 += 2
+                            # Look ahead for more garbage in this line to merge
+                            garbage_spans = [span]
+                            j = i + 1
+                            while j < len(spans) and is_garbage(spans[j]["text"]):
+                                garbage_spans.append(spans[j])
+                                j += 1
+                            
+                            # Compute union bbox
+                            x0 = min(s["bbox"][0] for s in garbage_spans)
+                            y0 = min(s["bbox"][1] for s in garbage_spans)
+                            x1 = max(s["bbox"][2] for s in garbage_spans)
+                            y1 = max(s["bbox"][3] for s in garbage_spans)
+                            
+                            bbox = fitz.Rect(x0, y0, x1, y1)
+                            
+                            # Add generous padding to avoid clipping calligraphy
+                            bbox.x0 -= 5
+                            bbox.y0 -= 15  # Increased vertical padding
+                            bbox.x1 += 5
+                            bbox.y1 += 15  # Increased vertical padding
                             
                             pix = page.get_pixmap(clip=bbox, dpi=300)
                             filename = f"arabic_clip_{page_num+1}_{clip_count}.png"
@@ -65,8 +85,14 @@ def extract_text_from_pdf(pdf_path):
                             # Append image tag to text
                             page_text += f' <img src="{output_dir}/{filename}" class="arabic-text" alt="Arabic Text" /> '
                             clip_count += 1
+                            
+                            i = j # Skip processed spans
                         else:
+                            # Debug print for suspicious but accepted text
+                            if any(c in text for c in "~&+$<>^"):
+                                print(f"DEBUG: Text kept (not garbage): {text!r}")
                             page_text += text + " "
+                            i += 1
                     page_text += "\n"
             page_text += "\n"
         full_text += page_text
