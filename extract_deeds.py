@@ -1,17 +1,76 @@
 import json
 import re
 import os
-from pypdf import PdfReader
+import fitz # PyMuPDF
+
+def is_garbage(text):
+    text = text.strip()
+    if len(text) < 3:
+        return False
+        
+    # Ignore numbers like (1), 1., 123
+    if re.match(r'^[\(\[]?\d+[\)\]]?\.?$', text):
+        return False
+    
+    # Check for specific garbage patterns or high non-alnum ratio
+    if re.search(r'[&@#$%\^&*/\\]{3,}', text) or re.search(r'[~`]{3,}', text):
+        return True
+        
+    non_alnum = re.sub(r'[a-zA-Z0-9\s\.,;:\'\"-]', '', text)
+    if len(text) > 0 and len(non_alnum) / len(text) > 0.4:
+        return True
+        
+    return False
 
 def extract_text_from_pdf(pdf_path):
     if not os.path.exists(pdf_path):
         print(f"Error: File not found at {pdf_path}")
         return None
 
-    reader = PdfReader(pdf_path)
+    output_dir = "arabic_clips"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    doc = fitz.open(pdf_path)
     full_text = ""
-    for page in reader.pages:
-        full_text += page.extract_text() + "\n"
+    clip_count = 0
+    
+    for page_num, page in enumerate(doc):
+        blocks = page.get_text("dict")["blocks"]
+        page_text = ""
+        
+        # Do not sort blocks manually; rely on fitz default order (usually better for reading order if not columnar-interleaved by y-coord)
+        # blocks.sort(key=lambda b: (b["bbox"][1], b["bbox"][0]))
+
+        for b in blocks:
+            if "lines" in b:
+                for line in b["lines"]:
+                    for span in line["spans"]:
+                        text = span["text"]
+                        if is_garbage(text):
+                            # Extract image
+                            # Replace with placeholder instead of extracting image
+                            page_text += " [Arabic Text Image] "
+                            # bbox = fitz.Rect(span["bbox"])
+                            # # Add padding
+                            # bbox.x0 -= 2
+                            # bbox.y0 -= 2
+                            # bbox.x1 += 2
+                            # bbox.y1 += 2
+                            
+                            # pix = page.get_pixmap(clip=bbox, dpi=300)
+                            # filename = f"arabic_clip_{page_num+1}_{clip_count}.png"
+                            # pix.save(os.path.join(output_dir, filename))
+                            
+                            # # Append image tag to text
+                            # page_text += f' <img src="{output_dir}/{filename}" class="arabic-text" alt="Arabic Text" /> '
+                            # clip_count += 1
+                        else:
+                            page_text += text + " "
+                    page_text += "\n"
+            page_text += "\n"
+        full_text += page_text
+        
     return full_text
 
 def load_deeds_metadata(file_path):
@@ -44,9 +103,6 @@ def load_deeds_metadata(file_path):
             })
     return deeds
 
-def clean_text(text):
-    return text
-
 def find_deed_content(full_text, deeds):
     # We will search for headers based on ID.
     # Patterns observed: "(1) TITLE", "2. TITLE", "(53) TITLE"
@@ -71,7 +127,7 @@ def find_deed_content(full_text, deeds):
         21: r'(?:^|\n)\s*(?:Tenderness\s+towards\s+others|\(21\))', # Missing header
         51: r'(?:\(511|511\.)', # Typo in PDF, appears mid-line
         68: r'(?:^|\n).*?\(68\)', # Loose match for 68 (has noise before it), non-greedy
-        71: r'(?:^|\n)\s*(?:\(71\)|71\.|Six\s+Good\s+Deeds|\(71\)-\(17\))', # Weird label
+        71: r'(?:^|\n).*?(?:Six\s+Good\s+Deeds|SIX\s+GOOD\s+DEEDS|\(71\))', # Weird label, loose match
         79: r'(?:^|\n)\s*(?:\(19\)|19\.)\s+CLEANING' # Second (19)
     }
     
@@ -153,28 +209,6 @@ def find_deed_content(full_text, deeds):
             if re.match(r'^\s*\d+\s*$', line):
                 continue
             
-            # Check for garbled text (long sequences of special chars)
-            # Examples: &j!*;ggq,;,$&pJi&p&, ~&.dJ3&y 36.j3;6L3J
-            
-            # Pattern 1: Sequence of 3+ specific noise characters
-            if re.search(r'[&@#$%\^&*/\\]{3,}', line) or re.search(r'[~`]{3,}', line):
-                line = re.sub(r'.*[&@#$%\^&*/\\]{3,}.*', '[Arabic Text Image]', line)
-            
-            # Pattern 2: Mixed garbage (words with symbols) repeated
-            elif re.search(r'(?:[\w]*[&@#$%\^&*/\\]+[\w]*\s*){3,}', line):
-                 line = re.sub(r'.*(?:[\w]*[&@#$%\^&*/\\]+[\w]*\s*){3,}.*', '[Arabic Text Image]', line)
-                 
-            # Pattern 3: Specific known garbage patterns from observation
-            elif "J' ' #MS.#" in line or ":&~yl~~~~fl" in line or "7~~&t" in line:
-                line = '[Arabic Text Image]'
-            
-            # Pattern 4: High ratio of non-alphanumeric characters
-            # If line is not empty and has > 40% non-alphanumeric chars (excluding spaces)
-            elif len(line.strip()) > 5:
-                non_alnum = re.sub(r'[a-zA-Z0-9\s]', '', line)
-                if len(non_alnum) / len(line.strip()) > 0.4:
-                     line = '[Arabic Text Image]'
-                
             cleaned_lines.append(line)
             
         content = '\n'.join(cleaned_lines).strip()
