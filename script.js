@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const option = document.createElement('option');
             option.value = chapter.title;
             // Show Arabic title if available
-            option.textContent = chapter.title;
+            option.textContent = chapter.title + (chapter.arabic ? ' (' + chapter.arabic + ')' : '');
             chapterFilter.appendChild(option);
         });
     }
