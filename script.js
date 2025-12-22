@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
         renderBooks();
         renderStories(fazailData.stories);
+        populateBookFilter();
         populateChapterFilter();
         setupEventListeners();
         updateStats();

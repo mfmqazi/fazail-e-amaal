@@ -605,11 +605,56 @@ a {
 }
 
 .stories-filter {
+    margin-bottom: 3rem;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+}
+
+.filter-group {
     display: flex;
     gap: 1rem;
-    margin-bottom: 3rem;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    background: var(--bg-card);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-full);
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+.search-bar svg {
+    color: var(--text-light);
+    flex-shrink: 0;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-primary);
+    width: 100%;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: var(--text-light);
 }
 
 .search-box {
@@ -644,11 +689,11 @@ a {
 }
 
 .filter-select {
-    padding: 0.875rem 2.5rem 0.875rem 1.25rem;
+    padding: 0.75rem 2.5rem 0.75rem 1.25rem;
     border: 2px solid var(--bg-secondary);
     border-radius: var(--radius-full);
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.95rem;
     background: var(--bg-card);
     cursor: pointer;
     appearance: none;
@@ -656,11 +701,14 @@ a {
     background-repeat: no-repeat;
     background-position: right 1rem center;
     transition: var(--transition-fast);
+    min-width: 150px;
+    color: var(--text-primary);
 }
 
 .filter-select:focus {
     outline: none;
     border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1);
 }
 
 .stories-grid {
@@ -1048,6 +1096,69 @@ a {
     direction: rtl;
     line-height: 2.4;
     margin-bottom: 0;
+}
+
+/* Arabic Images from source website */
+.arabic-images {
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(64, 145, 108, 0.05) 100%);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--gold);
+    text-align: center;
+}
+
+/* Inline Arabic image container - matches original site positioning */
+.arabic-image-container {
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.03) 0%, rgba(64, 145, 108, 0.03) 100%);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.arabic-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Story content styling - matches original paragraph formatting */
+.story-content {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.story-content p,
+.story-content font {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.story-content br+br {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Preserve table styling from original */
+.story-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.story-content td {
+    padding: 0.5rem;
+    vertical-align: top;
+}
+
+/* Clean up old font tags */
+.story-content font[size],
+.story-content font[face] {
+    font-size: inherit !important;
+    font-family: inherit !important;
 }
 
 .lesson-box {
