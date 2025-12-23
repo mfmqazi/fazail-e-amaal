@@ -8,24 +8,13 @@ __pycache__/
 *.pdf
 *.txt
 *.png
+
+# But keep images for website
 !images/**/*.png
 !images/**/*.gif
 
-# Generated/temp files
+# JSON files (generated/temp)
 *.json
-!package.json
-deeds_content.json
-fazail*.json
-quran_virtues*.json
-toc*.json
-book1_linear_map.json
-image_mapping.json
-master_logical_map*.json
-page_map*.json
-
-# Extracted/processed directories 
-arabic_clips/
-extracted_images/
 
 # VS Code
 .vscode/
@@ -36,7 +25,6 @@ Thumbs.db
 
 # Keep these for the website
 !fazail_data.js
-!data.js
 !script.js
 !index.html
 !styles.css
