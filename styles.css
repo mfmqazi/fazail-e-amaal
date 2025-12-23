@@ -1,46 +1,131 @@
-:root {
-    --primary-color: #1B4332; /* Deep Islamic Green */
-    --secondary-color: #D4AF37; /* Gold */
-    --accent-color: #2D6A4F; /* Lighter Green */
-    --text-color: #1F2937;
-    --text-light: #6B7280;
-    --background-color: #F9FAFB;
-    --card-bg: #FFFFFF;
-    --font-heading: 'Amiri', serif;
-    --font-body: 'Inter', sans-serif;
-    --transition: all 0.3s ease;
+/* ===== Indopak Nastaleeq Font from Tarteel ===== */
+@font-face {
+    font-family: 'Indopak Nastaleeq';
+    src: url('https://static-cdn.tarteel.ai/qul/fonts/nastaleeq/Hanafi/normal-v4.2.2/with-waqf-lazmi/font.ttf') format('truetype');
+    font-display: swap;
 }
 
-* {
+/* ===== CSS Variables ===== */
+:root {
+    /* Color Palette - Deep Islamic Green Theme */
+    --primary-dark: #0D1F17;
+    --primary-color: #1B4332;
+    --primary-light: #2D6A4F;
+    --accent-green: #40916C;
+    --accent-light: #52B788;
+    --gold: #D4AF37;
+    --gold-light: #E8C766;
+    --gold-dark: #B8942E;
+
+    /* Text Colors */
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-light: #6B7280;
+    --text-muted: #9CA3AF;
+
+    /* Background Colors */
+    --bg-primary: #FAFBFC;
+    --bg-secondary: #F3F4F6;
+    --bg-card: #FFFFFF;
+    --bg-dark: #0D1F17;
+
+    /* Fonts - Indopak Nastaleeq from Tarteel for Arabic/Urdu */
+    --font-arabic: 'Indopak Nastaleeq', 'Noto Nastaliq Urdu', 'Amiri', serif;
+    --font-heading: 'Outfit', 'Inter', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+}
+
+/* ===== Reset & Base Styles ===== */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-body);
-    color: var(--text-color);
-    background-color: var(--background-color);
-    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
-/* Navigation */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===== Arabic/Urdu Text Styling (Indo-Pak Nastaliq) ===== */
+.arabic-text,
+.title-arabic,
+.logo-arabic,
+.hadith-arabic,
+.quote-arabic,
+.dua-arabic,
+[lang="ar"],
+[lang="ur"] {
+    font-family: var(--font-arabic);
+    direction: rtl;
+    text-align: right;
+    line-height: 2.2;
+    /* Nastaliq needs more line height */
+    font-size: 1.3em;
+    letter-spacing: 0;
+}
+
+/* Ensure Arabic text in inline elements also gets proper styling */
+.arabic-inline {
+    font-family: var(--font-arabic);
+    direction: rtl;
+    unicode-bidi: embed;
+    line-height: 2;
+}
+
+/* ===== Navigation ===== */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding: 1rem 0;
+    transition: var(--transition-normal);
+}
+
+.navbar.scrolled {
+    box-shadow: var(--shadow-md);
 }
 
 .nav-content {
@@ -52,158 +137,524 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: var(--primary-color);
+    gap: 0.75rem;
     font-weight: 700;
-    font-size: 1.5rem;
-    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    transition: var(--transition-fast);
+}
+
+.logo:hover {
+    color: var(--primary-light);
 }
 
 .logo-icon {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.logo-arabic {
+    font-family: var(--font-arabic);
+    font-size: 1rem;
+    color: var(--gold);
+    margin-right: 0.5rem;
+    line-height: 1.8;
 }
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .nav-link {
-    text-decoration: none;
-    color: var(--text-color);
     font-weight: 500;
-    transition: var(--transition);
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+    position: relative;
+    padding: 0.25rem 0;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transition: var(--transition-normal);
+}
+
+.nav-link:hover,
+.nav-link.active {
     color: var(--primary-color);
 }
 
-/* Hero Section */
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition-fast);
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 999;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-nav-link {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+    background: var(--bg-secondary);
+    color: var(--primary-color);
+}
+
+/* ===== Hero Section ===== */
 .hero {
-    padding: 8rem 0 4rem;
-    background: linear-gradient(135deg, #1B4332 0%, #081C15 100%);
-    color: white;
-    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     position: relative;
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 50%, var(--primary-light) 100%);
+    color: white;
     overflow: hidden;
 }
 
 .hero-background {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    inset: 0;
+    pointer-events: none;
+}
+
+.hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M40 0L80 40L40 80L0 40L40 0zm0 20L60 40L40 60L20 40L40 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: patternFloat 20s ease-in-out infinite;
+}
+
+@keyframes patternFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(1deg);
+    }
+}
+
+.hero-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 800px;
+    text-align: center;
+    max-width: 900px;
     margin: 0 auto;
 }
 
+.hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(4px);
+}
+
 .hero-title {
+    margin-bottom: 1rem;
+}
+
+.title-english {
+    display: block;
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 0.5rem;
-    color: var(--secondary-color);
+}
+
+.title-arabic {
+    display: block;
+    font-family: var(--font-arabic);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--gold);
+    line-height: 2;
+    direction: rtl;
 }
 
 .hero-subtitle {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-weight: 500;
     opacity: 0.9;
-}
-
-.hero-author {
-    font-style: italic;
-    margin-bottom: 2rem;
-    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    opacity: 0.9;
+    font-size: 1.125rem;
+    opacity: 0.85;
     line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 3rem;
 }
 
 .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 2rem;
     margin-bottom: 3rem;
+    flex-wrap: wrap;
 }
 
 .stat-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    border-radius: 12px;
-    backdrop-filter: blur(5px);
-    min-width: 120px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius-md);
+    min-width: 140px;
+    transition: var(--transition-normal);
+}
+
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-4px);
+}
+
+.stat-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .stat-number {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 700;
-    color: var(--secondary-color);
     font-family: var(--font-heading);
+    color: var(--gold);
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .cta-button {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-full);
     font-weight: 600;
-    transition: var(--transition);
+    font-size: 1rem;
+    transition: var(--transition-normal);
+    cursor: pointer;
     border: 2px solid transparent;
 }
 
-.cta-button:hover {
-    background-color: transparent;
-    color: var(--secondary-color);
-    border-color: var(--secondary-color);
+.cta-button.primary {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color: var(--primary-dark);
 }
 
-/* Deeds Section */
-.deeds-section {
-    padding: 4rem 0;
+.cta-button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
 }
 
+.cta-button.secondary {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg);
+    margin: 0 auto;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+/* ===== Section Styles ===== */
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+}
+
+.section-badge {
+    display: inline-block;
+    padding: 0.375rem 1rem;
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.1) 0%, rgba(45, 106, 79, 0.1) 100%);
+    color: var(--primary-color);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .section-subtitle {
+    font-size: 1.125rem;
     color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.search-filter-container {
+/* ===== Books Section ===== */
+.books-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.book-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--book-color, var(--primary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition-normal);
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.book-card:hover::before {
+    transform: scaleX(1);
+}
+
+.book-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.book-number {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--bg-secondary);
+    color: var(--text-light);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.75rem;
+}
+
+.book-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.book-arabic {
+    font-family: var(--font-arabic);
+    font-size: 1.25rem;
+    color: var(--gold-dark);
+    direction: rtl;
+    margin-bottom: 1rem;
+    line-height: 2;
+}
+
+.book-description {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* ===== Stories Section ===== */
+.stories-section {
+    padding: 6rem 0;
+}
+
+.stories-filter {
+    margin-bottom: 3rem;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+}
+
+.filter-group {
     display: flex;
     gap: 1rem;
-    margin-bottom: 3rem;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    background: var(--bg-card);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-full);
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+.search-bar svg {
+    color: var(--text-light);
+    flex-shrink: 0;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-primary);
+    width: 100%;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: var(--text-light);
 }
 
 .search-box {
@@ -222,176 +673,321 @@ body {
 
 .search-input {
     width: 100%;
-    padding: 0.8rem 1rem 0.8rem 3rem;
-    border: 1px solid #E5E7EB;
-    border-radius: 8px;
+    padding: 0.875rem 1rem 0.875rem 3rem;
+    border: 2px solid var(--bg-secondary);
+    border-radius: var(--radius-full);
     font-family: var(--font-body);
     font-size: 1rem;
-    transition: var(--transition);
+    background: var(--bg-card);
+    transition: var(--transition-fast);
 }
 
 .search-input:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1);
 }
 
 .filter-select {
-    padding: 0.8rem 2rem 0.8rem 1rem;
-    border: 1px solid #E5E7EB;
-    border-radius: 8px;
+    padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+    border: 2px solid var(--bg-secondary);
+    border-radius: var(--radius-full);
     font-family: var(--font-body);
-    font-size: 1rem;
-    background-color: white;
+    font-size: 0.95rem;
+    background: var(--bg-card);
     cursor: pointer;
-    transition: var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    transition: var(--transition-fast);
+    min-width: 150px;
+    color: var(--text-primary);
 }
 
 .filter-select:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1);
 }
 
-.deeds-grid {
+.stories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
 }
 
-.deed-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: var(--transition);
+.story-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition-normal);
     cursor: pointer;
-    border: 1px solid #E5E7EB;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
-.deed-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    border-color: var(--secondary-color);
+.story-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gold);
 }
 
-.deed-number {
-    font-size: 0.9rem;
-    color: var(--secondary-color);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.deed-title {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
+.story-chapter {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.08) 0%, rgba(64, 145, 108, 0.08) 100%);
     color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
     margin-bottom: 1rem;
-    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.deed-preview {
+.story-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.story-preview {
     color: var(--text-light);
     font-size: 0.95rem;
-    margin-bottom: 1.5rem;
+    line-height: 1.7;
     flex-grow: 1;
-}
-
-.deed-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.tag {
-    background-color: #F0FDF4;
-    color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-/* About Section */
-.about-section {
-    background-color: white;
-    padding: 5rem 0;
-}
-
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.about-text {
-    font-size: 1.1rem;
-    color: var(--text-color);
-}
-
-.about-text p {
-    margin-bottom: 1.5rem;
-}
-
-.author-info {
-    margin-top: 3rem;
-    padding: 2rem;
-    background-color: var(--background-color);
-    border-radius: 12px;
-    border-left: 4px solid var(--secondary-color);
-}
-
-.author-info h3 {
-    color: var(--primary-color);
     margin-bottom: 1rem;
-    font-family: var(--font-heading);
 }
 
-/* Footer */
-.footer {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 3rem 0;
+.story-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bg-secondary);
+}
+
+.story-read-more {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.story-read-more:hover {
+    color: var(--gold-dark);
+    gap: 0.75rem;
+}
+
+/* ===== Hadith Section ===== */
+.hadith-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+}
+
+.hadith-card {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem;
     text-align: center;
 }
 
-.footer-text {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    font-family: var(--font-heading);
+.hadith-decoration {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--gold);
+    opacity: 0.3;
 }
 
-.footer-hadith {
-    display: block;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    color: var(--secondary-color);
+.hadith-decoration.left {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+}
+
+.hadith-decoration.right {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+}
+
+.hadith-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hadith-arabic {
+    font-family: var(--font-arabic);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    line-height: 2.2;
+    direction: rtl;
+}
+
+.hadith-translation {
+    font-size: 1.25rem;
+    color: white;
     font-style: italic;
-    font-family: var(--font-body);
+    margin-bottom: 1rem;
+    line-height: 1.8;
 }
 
-.footer-copyright {
-    font-size: 0.9rem;
+.hadith-reference {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* ===== About Section ===== */
+.about-section {
+    padding: 6rem 0;
+    background: var(--bg-card);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-content .section-badge {
+    margin-bottom: 0.5rem;
+}
+
+.about-content .section-title {
+    text-align: left;
+}
+
+.about-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.about-text p {
+    margin-bottom: 1.25rem;
+}
+
+.about-text strong {
+    color: var(--primary-color);
+}
+
+.author-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.author-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.author-card h3 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.author-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.author-dates {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+}
+
+.author-card>p:last-child {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* ===== Footer ===== */
+.footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 4rem 0;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-quote {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quote-arabic {
+    font-family: var(--font-arabic);
+    font-size: 1.75rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    line-height: 2.2;
+    direction: rtl;
+}
+
+.quote-translation {
+    font-size: 1.125rem;
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.quote-reference {
+    font-size: 0.875rem;
     opacity: 0.7;
 }
 
-/* Modal */
+.footer-copyright {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.footer-note {
+    font-size: 0.875rem;
+    opacity: 0.6;
+}
+
+/* ===== Modal ===== */
 .modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
     opacity: 0;
     pointer-events: none;
-    transition: var(--transition);
+    transition: var(--transition-normal);
 }
 
 .modal.active {
@@ -401,100 +997,452 @@ body {
 
 .modal-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
 }
 
 .modal-content {
-    background-color: white;
-    width: 90%;
-    max-width: 700px;
-    max-height: 90vh;
-    border-radius: 16px;
     position: relative;
     z-index: 1;
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
     overflow-y: auto;
-    transform: translateY(20px);
-    transition: var(--transition);
     padding: 2.5rem;
+    transform: translateY(20px) scale(0.95);
+    transition: var(--transition-normal);
 }
 
 .modal.active .modal-content {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 .modal-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: none;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
     border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text-light);
-    transition: var(--transition);
-    padding: 0.5rem;
-    border-radius: 50%;
+    transition: var(--transition-fast);
 }
 
 .modal-close:hover {
-    background-color: #F3F4F6;
-    color: var(--text-color);
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .modal-header {
     margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--bg-secondary);
 }
 
-.modal-number {
-    color: var(--secondary-color);
+.modal-chapter {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.1) 0%, rgba(64, 145, 108, 0.1) 100%);
+    color: var(--primary-color);
+    font-size: 0.75rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    display: block;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .modal-title {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 1.75rem;
+    font-weight: 700;
     color: var(--primary-color);
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
 .modal-body {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-color);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
 }
 
 .modal-body p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
+/* Arabic/Dua box in modal */
+.dua-box {
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(64, 145, 108, 0.05) 100%);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--gold);
+}
+
+.dua-arabic {
+    font-family: var(--font-arabic);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-align: right;
+    direction: rtl;
+    line-height: 2.4;
+    margin-bottom: 0;
+}
+
+/* Arabic Images from source website */
+.arabic-images {
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.05) 0%, rgba(64, 145, 108, 0.05) 100%);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--gold);
+    text-align: center;
+}
+
+/* Inline Arabic image container - matches original site positioning */
+.arabic-image-container {
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.03) 0%, rgba(64, 145, 108, 0.03) 100%);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.arabic-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Story content styling - matches original paragraph formatting */
+.story-content {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.story-content p,
+.story-content font {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.story-content br+br {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Preserve table styling from original */
+.story-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.story-content td {
+    padding: 0.5rem;
+    vertical-align: top;
+}
+
+/* Clean up old font tags */
+.story-content font[size],
+.story-content font[face] {
+    font-size: inherit !important;
+    font-family: inherit !important;
+}
+
+.lesson-box {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(232, 199, 102, 0.08) 100%);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    border-left: 4px solid var(--gold);
+}
+
+.lesson-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold-dark);
+    margin-bottom: 0.5rem;
+}
+
+.lesson-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
-    
+
+    .about-content .section-title {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .hero {
+        padding: 6rem 0 3rem;
+        min-height: auto;
+    }
+
     .hero-stats {
-        flex-direction: column;
         gap: 1rem;
     }
-    
-    .search-filter-container {
+
+    .stat-card {
+        padding: 1rem 1.5rem;
+        min-width: 100px;
+    }
+
+    .stat-number {
+        font-size: 1.75rem;
+    }
+
+    .books-grid,
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stories-filter {
         flex-direction: column;
     }
-    
+
     .search-box {
         max-width: 100%;
     }
-    
-    .nav-links {
-        display: none; /* Mobile menu implementation would go here */
+
+    .hadith-card {
+        padding: 2rem 1rem;
+    }
+
+    .hadith-arabic {
+        font-size: 1.5rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.book-card,
+.story-card {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+.book-card:nth-child(1),
+.story-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.book-card:nth-child(2),
+.story-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.book-card:nth-child(3),
+.story-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.book-card:nth-child(4),
+.story-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.book-card:nth-child(5),
+.story-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.book-card:nth-child(6),
+.story-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.book-card:nth-child(7),
+.story-card:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.book-card:nth-child(8),
+.story-card:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+}
+
+.empty-state h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+/* ===== Clickable Book Cards ===== */
+.book-card {
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.book-card.active {
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    transform: scale(1.02);
+}
+
+.book-story-count {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(212, 175, 55, 0.15);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold-dark);
+}
+
+/* ===== Story Book Tag ===== */
+.story-book-tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.story-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* ===== Modal Book Title ===== */
+.modal-book-title {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Story Quote Styling ===== */
+.story-quote {
+    border-left: 3px solid var(--gold);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--primary-color);
+    background: rgba(212, 175, 55, 0.05);
+    padding: 1rem 1.5rem;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* ===== Inline Arabic Text Styling ===== */
+.arabic-text {
+    display: block;
+    font-family: var(--font-arabic);
+    direction: rtl;
+    text-align: right;
+    line-height: 2.4;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(27, 67, 50, 0.05) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+/* Modal Content Body */
+.modal-content-body {
+    padding: 1.5rem 0;
+}
+
+.modal-content-body p {
+    margin-bottom: 1.25rem;
+    line-height: 1.9;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.modal-content-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== Responsive Adjustments for Arabic ===== */
+@media (max-width: 768px) {
+    .arabic-text {
+        font-size: 1.25rem;
+        padding: 1rem 1.25rem;
+        line-height: 2.2;
+    }
+
+    .story-quote {
+        padding: 0.75rem 1rem;
+        margin: 1rem 0;
+    }
+
+    .modal-content-body p {
+        font-size: 1rem;
+        line-height: 1.8;
     }
 }

@@ -1,99 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Good Deeds - Mufti Taqi Usmani</title>
-    <meta name="description" content="Discover 82 simple actions that bring abundant rewards. A comprehensive guide by Mufti Taqi Usmani on easy good deeds in Islam.">
+    <title>Fazail-e-Amaal - Virtues of Deeds</title>
+    <meta name="description"
+        content="Explore Fazail-e-Amaal (Virtues of Deeds) by Maulana Muhammad Zakariyya - A comprehensive collection of Islamic virtues including Stories of Sahaabah, Virtues of Quran, Salaat, Zikr, Tabligh, and Ramadan.">
+    <meta name="keywords" content="Fazail e Amaal, Virtues of Deeds, Tabligh, Sahaabah, Islamic, Maulana Zakariyya">
+
+    <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Arabic/Urdu (Indo-Pak Nastaliq) and English fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
                 <a href="index.html" class="logo">
-                    <span class="logo-icon">📖</span>
-                    <span class="logo-text">Easy Good Deeds</span>
+                    <span class="logo-icon">📿</span>
+                    <span class="logo-text">Fazail-e-Amaal</span>
+                    <span class="logo-arabic">فضائل الأعمال</span>
                 </a>
                 <div class="nav-links">
                     <a href="#home" class="nav-link active">Home</a>
-                    <a href="#deeds" class="nav-link">All Deeds</a>
+                    <a href="#books" class="nav-link">Books</a>
+                    <a href="#stories" class="nav-link">Stories</a>
                     <a href="#about" class="nav-link">About</a>
                 </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#books" class="mobile-nav-link">Books</a>
+        <a href="#stories" class="mobile-nav-link">Stories</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background"></div>
+        <div class="hero-background">
+            <div class="hero-pattern"></div>
+            <div class="hero-glow"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Easy Good Deeds</h1>
-                <p class="hero-subtitle">Simple Actions, Abundant Rewards</p>
-                <p class="hero-author">By Mufti Taqi Usmani</p>
+                <div class="hero-badge">
+                    <span>Compiled by Maulana Muhammad Zakariyya Kaandhlawi</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-english">Fazail-e-Amaal</span>
+                    <span class="title-arabic">فضائل الأعمال</span>
+                </h1>
+                <p class="hero-subtitle">Virtues of Deeds</p>
                 <p class="hero-description">
-                    Discover 82 easy deeds that require minimal effort but yield significant spiritual benefits. 
-                    From worship to social conduct, learn how small actions can bring immense rewards.
+                    A comprehensive collection of authentic ahadith and inspiring stories from the lives of
+                    the Prophet ﷺ and his noble companions, emphasizing the virtues of fundamental Islamic practices.
                 </p>
+
                 <div class="hero-stats">
                     <div class="stat-card">
-                        <div class="stat-number">82</div>
-                        <div class="stat-label">Good Deeds</div>
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Books</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">10</div>
-                        <div class="stat-label">Categories</div>
+                        <div class="stat-icon">📖</div>
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Chapters</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Rewards</div>
+                        <div class="stat-icon">✨</div>
+                        <div class="stat-number">452</div>
+                        <div class="stat-label">Pages</div>
                     </div>
                 </div>
-                <a href="#deeds" class="cta-button">Explore All Deeds</a>
+
+                <div class="hero-actions">
+                    <a href="#books" class="cta-button primary">Explore Books</a>
+                    <a href="#stories" class="cta-button secondary">Read Stories</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative scroll indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books" class="books-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">The Collection</span>
+                <h2 class="section-title">Books in Fazail-e-Amaal</h2>
+                <p class="section-subtitle">
+                    Eight comprehensive books covering essential aspects of Islamic faith and practice
+                </p>
+            </div>
+
+            <div id="booksGrid" class="books-grid">
+                <!-- Books will be dynamically inserted here -->
             </div>
         </div>
     </section>
 
-    <!-- Search and Filter Section -->
-    <section id="deeds" class="deeds-section">
+    <!-- Stories Section -->
+    <section id="stories" class="stories-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">All Good Deeds</h2>
-                <p class="section-subtitle">Browse through 82 simple actions that bring immense rewards</p>
+                <span class="section-badge">Hikayaat-e-Sahaabah</span>
+                <h2 class="section-title">Stories of the Companions</h2>
+                <p class="section-subtitle">
+                    Inspiring tales from the golden age of Islam - stories of faith, sacrifice, and devotion
+                </p>
             </div>
 
-            <div class="search-filter-container">
-                <div class="search-box">
-                    <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <input type="text" id="searchInput" placeholder="Search for a good deed..." class="search-input">
-                </div>
+            <div class="stories-filter">
+                <!-- Search & Filter -->
                 <div class="filter-container">
-                    <label for="categoryFilter" class="filter-label">Category:</label>
-                    <select id="categoryFilter" class="filter-select">
-                        <option value="all">All Categories</option>
-                        <option value="worship">Worship & Prayer</option>
-                        <option value="social">Social Conduct</option>
-                        <option value="family">Family & Relations</option>
-                        <option value="spiritual">Spiritual Development</option>
-                        <option value="charity">Charity & Kindness</option>
-                        <option value="daily">Daily Practices</option>
-                        <option value="quran">Quran & Dhikr</option>
-                        <option value="business">Business & Ethics</option>
-                        <option value="character">Character Building</option>
-                        <option value="misc">Miscellaneous</option>
-                    </select>
+                    <div class="filter-group">
+                        <div class="search-bar">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <input type="text" id="searchInput" placeholder="Search stories...">
+                        </div>
+
+                        <select id="bookFilter" class="filter-select">
+                            <option value="all">All Books</option>
+                        </select>
+
+                        <select id="chapterFilter" class="filter-select">
+                            <option value="all">All Chapters</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <div id="deedsGrid" class="deeds-grid">
-                <!-- Deeds will be dynamically inserted here -->
+            <div id="storiesGrid" class="stories-grid">
+                <!-- Stories will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Hadith Section -->
+    <section class="hadith-section">
+        <div class="container">
+            <div class="hadith-card">
+                <div class="hadith-decoration left"></div>
+                <div class="hadith-content">
+                    <div class="hadith-arabic">
+                        خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ
+                    </div>
+                    <div class="hadith-translation">
+                        "The best of you are those who learn the Qur'an and teach it."
+                    </div>
+                    <div class="hadith-reference">
+                        — Sahih Bukhari
+                    </div>
+                </div>
+                <div class="hadith-decoration right"></div>
             </div>
         </div>
     </section>
@@ -101,25 +190,39 @@
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
-            <div class="about-content">
-                <h2 class="section-title">About the Book</h2>
-                <div class="about-text">
-                    <p>
-                        <strong>"Easy Good Deeds"</strong> by Mufti Taqi Usmani is a valuable guide that details numerous simple actions 
-                        a person can undertake to accrue abundant rewards. The book covers a wide array of topics, from worship to 
-                        social conduct, emphasizing that these deeds require minimal effort but yield significant spiritual benefits.
-                    </p>
-                    <p>
-                        This comprehensive work outlines 82 such deeds, making Islamic teachings accessible and encouraging regular, 
-                        small acts of worship. The book aims to instill a spirit of practicing Islam in its entirety, showing how 
-                        everyday actions can become acts of worship when done with the right intention.
-                    </p>
-                    <div class="author-info">
-                        <h3>About the Author</h3>
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-badge">About the Book</span>
+                    <h2 class="section-title">Fazail-e-Amaal</h2>
+                    <div class="about-text">
                         <p>
-                            <strong>Mufti Muhammad Taqi Usmani</strong> is a renowned Islamic scholar, jurist, and author. He is an 
-                            expert in Islamic jurisprudence (fiqh), economics, and hadith. His works are widely respected and have 
-                            been translated into numerous languages, making Islamic knowledge accessible to millions worldwide.
+                            <strong>Fazail-e-Amaal</strong> (فضائل الأعمال), meaning "Virtues of Deeds," is a renowned
+                            compilation by <strong>Shaikhul Hadith Maulana Muhammad Zakariyya Kaandhlawi</strong>
+                            (rahmatullahi alayh). Originally known as <em>Tablighi Nisaab</em>, it serves as a
+                            foundational text for spiritual development and Islamic education.
+                        </p>
+                        <p>
+                            The book is a compilation of authentic ahadith and inspiring stories that highlight
+                            the virtues and rewards of fundamental Islamic practices. It has been translated into
+                            numerous languages and is widely used across the Muslim world.
+                        </p>
+                        <p>
+                            Through carefully selected narrations, this blessed book encourages Muslims to
+                            strengthen their faith, improve their character, and become closer to Allah through
+                            consistent acts of worship and good deeds.
+                        </p>
+                    </div>
+                </div>
+                <div class="about-author">
+                    <div class="author-card">
+                        <div class="author-icon">📿</div>
+                        <h3>The Author</h3>
+                        <h4>Maulana Muhammad Zakariyya Kaandhlawi</h4>
+                        <p class="author-dates">(1898 - 1982 CE / 1315 - 1402 AH)</p>
+                        <p>
+                            Known as "Shaikhul Hadith," he was a renowned Islamic scholar, hadith expert,
+                            and spiritual guide. He authored over 100 books and dedicated his life to
+                            teaching hadith and guiding seekers on the spiritual path.
                         </p>
                     </div>
                 </div>
@@ -131,24 +234,35 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p class="footer-text">
-                    "The best of deeds are those that are done consistently, even if they are small."
-                    <span class="footer-hadith">- Prophet Muhammad ﷺ</span>
-                </p>
-                <p class="footer-copyright">
-                    © 2025 Easy Good Deeds. Educational resource based on the book by Mufti Taqi Usmani.
-                </p>
+                <div class="footer-quote">
+                    <div class="quote-arabic">
+                        إِنَّ اللَّهَ لَا يُضِيعُ أَجْرَ الْمُحْسِنِينَ
+                    </div>
+                    <div class="quote-translation">
+                        "Indeed, Allah does not allow to be lost the reward of those who do good."
+                    </div>
+                    <div class="quote-reference">— Surah At-Tawbah 9:120</div>
+                </div>
+                <div class="footer-info">
+                    <p class="footer-copyright">
+                        © 2025 Fazail-e-Amaal Digital. An educational resource based on the works of
+                        Maulana Muhammad Zakariyya Kaandhlawi (rahmatullahi alaih).
+                    </p>
+                    <p class="footer-note">
+                        May Allah accept this effort and make it beneficial for the Ummah. آمين
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Deed Detail Modal -->
-    <div id="deedModal" class="modal">
+    <!-- Story Modal -->
+    <div id="storyModal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
             <button class="modal-close" id="closeModal">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
             </button>
             <div id="modalBody">
@@ -157,7 +271,8 @@
         </div>
     </div>
 
-    <script src="data.js"></script>
+    <script src="fazail_data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
